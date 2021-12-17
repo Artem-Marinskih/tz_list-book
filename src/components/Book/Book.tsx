@@ -1,16 +1,15 @@
 import { FC } from 'react'
-import './Book'
+import { cn } from '@bem-react/classname';
+import { BookType } from '../Books.types'
+import './Book.scss'
 
-export type BookProps = {
-  author: string,
-  title: string,
-}
+const cnBook = cn('Book')
 
-export const Book: FC<BookProps> = ({ author, title}) => {
+export const Book: FC<BookType> = ({ id, author, title}) => {
  return (
-   <div className='Book'>
-     <h2 className='Book__author'>{author}</h2>
-     <p className='Book__title'>{title}</p>
+   <div className={cnBook()}>
+     <h2 className={cnBook('Author')}>{author}</h2>
+     <p className={cnBook('Title')}>{title}</p>
    </div>
  )
 }

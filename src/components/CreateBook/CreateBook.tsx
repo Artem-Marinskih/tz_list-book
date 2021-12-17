@@ -1,48 +1,77 @@
 import { FC, useCallback, useState } from 'react';
-import './CreateBook';
+import { v4 } from 'uuid';
+import { cn } from '@bem-react/classname';
+import { BookType, BookDataType } from '../Books.types';
+import { Book } from '../Book/Book';
 
-const EMPTY_FORM = {
+import './CreateBook.scss';
+
+const INITIAL_BOOK: BookType[] = [
+  {
+    id: '1',
+    author: '',
+    title: '',
+  },
+];
+
+const EMPTY_BOOK_FORM: BookDataType = {
   author: '',
   title: '',
-}
+};
 
-export type ArrBooks = {
-  author: string,
-  title: string,
-}
-
-export const arrBooks: ArrBooks[] = []
-console.log(arrBooks)
+const cnCreateBook = cn('CreateBook');
 
 export const CreateBook: FC = () => {
-  const [form, setForm] = useState(EMPTY_FORM)  
+  const [books, setBook] = useState(INITIAL_BOOK);
 
-  const saveBook = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    console.log(form)
-    arrBooks.push(form)
-  };
+  const [form, setForm] = useState(EMPTY_BOOK_FORM);
 
-  const handleChange = useCallback(
+  const handleChange = useCallback((e) => {
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  }, []);
+
+  const handleFormSubmit = useCallback(
     (e) => {
-      setForm((prev) => ({
+      e.preventDefault();
+
+      setBook((prev) => [
         ...prev,
-        [e.target.name]: e.target.value,
-      }))
-  }, [setForm]);
-  // console.log(form)о
+        {
+          ...form,
+          id: v4(),
+        },
+      ]);
+    },
+    [form]
+  );
 
   return (
-    <form className="CreateBook" action="" onSubmit={saveBook}>
-      <div className="CreateBook__field">
-        <input name="author" placeholder="Автор" onChange={handleChange} value={form.author} />
-      </div>
-      <div className="CreateBook__field">
-        <input name="title" placeholder="Название книги" onChange={handleChange} value={form.title} />
-      </div>
-      <button type="submit" className="CreateBook__button">
-        Создать
-      </button>
-    </form>
+    <div className={cnCreateBook()}>
+      {books.map((book) => (
+        <Book key={book.id} author={book.author} title={book.title} id={book.id} />
+      ))}
+      <form className={cnCreateBook('Form')} action="" onSubmit={handleFormSubmit}>
+        <input
+          className={cnCreateBook('BookInput', ['Author'])}
+          name="author"
+          placeholder="Автор"
+          onChange={handleChange}
+          value={form.author}
+        />
+        <input
+          className={cnCreateBook('BookInput', ['Title'])}
+          name="title"
+          placeholder="Название книги"
+          onChange={handleChange}
+          value={form.title}
+        />
+        <button className={cnCreateBook('AddButton')} type="submit">
+          Создать
+        </button>
+      </form>
+    </div>
   );
 };

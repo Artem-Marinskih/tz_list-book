@@ -1,3 +1,7 @@
 .Book {
-  border: 1px black;
+  display: flex;
+
+  &__Author {
+    background-color: brown;
+  }
 }

@@ -39,5 +39,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@bem-react/classname": "^1.5.12",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@types/uuid": "^8.3.3",
+    "node-sass": "^7.0.0",
+    "uuid": "^8.3.2"
   }
 }
