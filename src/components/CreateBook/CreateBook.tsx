@@ -1,23 +1,10 @@
 import { FC, useCallback, useState } from 'react';
 import { v4 } from 'uuid';
 import { cn } from '@bem-react/classname';
-import { BookType, BookDataType } from '../Books.types';
 import { Book } from '../Book/Book';
 
 import './CreateBook.scss';
-
-const INITIAL_BOOK: BookType[] = [
-  {
-    id: '1',
-    author: '',
-    title: '',
-  },
-];
-
-const EMPTY_BOOK_FORM: BookDataType = {
-  author: '',
-  title: '',
-};
+import { EMPTY_BOOK_FORM, INITIAL_BOOK } from './CreateBook.const';
 
 const cnCreateBook = cn('CreateBook');
 
