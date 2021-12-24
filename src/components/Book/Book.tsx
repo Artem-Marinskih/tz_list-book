@@ -1,15 +1,24 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react';
 import { cn } from '@bem-react/classname';
-import { BookType } from '../Books.types'
-import './Book.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-const cnBook = cn('Book')
+import { BookProps } from '../Books.types';
 
-export const Book: FC<BookType> = ({ id, author, title}) => {
- return (
-   <div className={cnBook()}>
-     <h2 className={cnBook('Author')}>{author}</h2>
-     <p className={cnBook('Title')}>{title}</p>
-   </div>
- )
-}
+import './Book.scss';
+
+const cnBook = cn('Book');
+
+export const Book: FC<BookProps> = ({ book, onDelete }) => {
+  const deleteHandler = useCallback(() => {
+    onDelete?.(book.id);
+  }, [onDelete, book.id]);
+
+  return (
+    <div key={book.id} className={cnBook()}>
+      <h2 className={cnBook('Author')}>{book.author}</h2>
+      <p className={cnBook('Title')}>{book.title}</p>
+      {onDelete && <FontAwesomeIcon icon={faTrashAlt} onClick={deleteHandler} />}
+    </div>
+  );
+};

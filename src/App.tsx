@@ -1,5 +1,6 @@
-import './App.css';
 import { CreateBook } from './components/CreateBook/CreateBook';
+
+import './App.scss';
 
 function App() {
   return (

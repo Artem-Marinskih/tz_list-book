@@ -1,7 +1,13 @@
 .Book {
   display: flex;
+  justify-content: center;
+  align-items: baseline;
 
-  &__Author {
-    background-color: brown;
+  &-Author {
+    // width: 200px;
+  }
+
+  &-Title {
+    // width: 200px;
   }
 }

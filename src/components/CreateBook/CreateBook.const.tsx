@@ -1,10 +1,10 @@
-import { BookDataType, BookType } from "../Books.types";
+import { BookDataType, BookType } from '../Books.types';
 
 export const INITIAL_BOOK: BookType[] = [
   {
     id: '1',
-    author: '',
-    title: '',
+    author: 'Автор',
+    title: 'Текст',
   },
 ];
 
