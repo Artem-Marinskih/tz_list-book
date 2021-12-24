@@ -4,5 +4,14 @@ export type BookDataType = {
 };
 
 export type BookType = BookDataType & {
-  id: string,
+  id: string;
+};
+
+export type StatusesDashboardFormProps = {
+  onSubmit: (status: BookType) => void;
+};
+
+export type BookProps = {
+  book: BookType;
+  onDelete?: (id: string) => void;
 }
