@@ -24,6 +24,8 @@ export const CreateBookForm: FC<StatusesDashboardFormProps> = ({ onSubmit }) => 
         ...form,
         id: v4(),
       });
+      
+      setForm(EMPTY_BOOK_FORM);
     },
     [form, onSubmit]
   );

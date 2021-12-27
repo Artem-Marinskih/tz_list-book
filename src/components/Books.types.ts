@@ -8,7 +8,7 @@ export type BookType = BookDataType & {
 };
 
 export type StatusesDashboardFormProps = {
-  onSubmit: (status: BookType) => void;
+  onSubmit: (book: BookType) => void;
 };
 
 export type BookProps = {
